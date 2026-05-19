@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulshi Pizza House | Premium Pizzeria</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        pizzaRed: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                        },
+                        pizzaGreen: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 dark:bg-stone-950 dark:text-stone-100 flex flex-col min-h-screen antialiased">
+
+    <!-- NAVBAR LAYER -->
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md shadow-sm border-b-2 border-pizzaRed-600 dark:border-pizzaRed-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-pizzaRed-600 text-white p-2 rounded-xl shadow-md shadow-pizzaRed-600/20">
+                    <i class="fa-solid fa-pizza-slice text-2xl animate-spin-slow"></i>
+                </div>
+                <span class="text-xl md:text-2xl font-black font-serif tracking-tight bg-gradient-to-r from-pizzaRed-700 via-pizzaGreen-700 to-pizzaRed-600 bg-clip-text text-transparent dark:from-pizzaRed-500 dark:to-pizzaGreen-500">
+                    TULSHI_PIZZA_HOUSE
+                </span>
+            </div>
+            
+            <button id="themeToggleEngine" class="p-2.5 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-100 dark:bg-stone-800 text-amber-500 dark:text-yellow-300 hover:scale-105 active:scale-95 transition-all">
+                <i class="fa-solid fa-moon text-xl dark:hidden"></i>
+                <i class="fa-solid fa-sun text-xl hidden dark:block"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO DISPLAY -->
+    <header class="relative overflow-hidden bg-stone-900 text-white py-16 md:py-24">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#16a34a_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="absolute -right-16 -top-16 w-64 h-64 bg-pizzaRed-700/30 rounded-full blur-3xl"></div>
+        <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-pizzaGreen-700/20 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-pizzaGreen-600/20 text-pizzaGreen-500 border border-pizzaGreen-600/30 mb-4">
+                🇮🇹 Gourmet Craft Pizzería
+            </span>
+            <h1 class="text-4xl md:text-6xl font-black font-serif tracking-tight mb-4">
+                Taste the Luxury of <span class="text-pizzaRed-500">Woodfired</span> Perfection
+            </h1>
+            <p class="text-stone-400 max-w-2xl mx-auto text-base md:text-lg font-light">
+                Every customized pizza pie features wild yeast sourdough bases, hand-crushed San Marzano tomatoes, and artisanal premium locally sourced toppings.
+            </p>
+        </div>
+    </header>
+
+    <!-- CORE FRAMEWORK CONTAINER -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-20">
+        
+        <!-- SECTION: READ (MENU SHOWCASE) -->
+        <section id="menuSection">
+            <div class="text-center md:text-left mb-10 border-b border-stone-200 dark:border-stone-800 pb-4">
+                <h2 class="text-3xl font-extrabold font-serif tracking-tight inline-flex items-center gap-3">
+                    <span class="text-pizzaGreen-600"><i class="fa-solid fa-leaf"></i></span> Signature Pizza Menu
+                </h2>
+                <p class="text-stone-500 dark:text-stone-400 mt-1">Select from our exquisite combinations to build your custom bake request</p>
+            </div>
+            
+            <div id="pizzaGridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamically injected via Engine implementation -->
+            </div>
+        </section>
+
+        <!-- SECTION: CREATE/UPDATE/DELETE (LIVE ORDER LOGISTIC TRACKER) -->
+        <section id="trackerSection" class="scroll-mt-24">
+            <div class="text-center md:text-left mb-10 border-b border-stone-200 dark:border-stone-800 pb-4">
+                <h2 class="text-3xl font-extrabold font-serif tracking-tight inline-flex items-center gap-3">
+                    <span class="text-pizzaRed-600"><i class="fa-solid fa-fire-burner"></i></span> Live Custom Order Tracker
+                </h2>
+                <p class="text-stone-500 dark:text-stone-400 mt-1">Manage, update, or cancel your pipeline bakes dynamically in real-time</p>
+            </div>
+
+            <!-- Empty State Component -->
+            <div id="emptyTrackerState" class="bg-white dark:bg-stone-900 rounded-3xl p-12 text-center border-2 border-dashed border-stone-200 dark:border-stone-800 shadow-sm">
+                <div class="w-16 h-16 bg-stone-100 dark:bg-stone-800 text-stone-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-folder-open text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-stone-700 dark:text-stone-300">No Custom Active Bakes Found</h3>
+                <p class="text-stone-500 dark:text-stone-400 text-sm max-w-sm mx-auto mt-1">Your current processing queue is empty. Choose a luxury pizza flavor variant above to initialize an order stream.</p>
+            </div>
+
+            <!-- Hydrated State Order Architecture Grid -->
+            <div id="hydratedOrdersGrid" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Dynamically populated rows representing state model arrays -->
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER WITH OWNER METADATA -->
+    <footer class="bg-stone-900 text-stone-300 border-t-4 border-pizzaGreen-700 transition-colors mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xl font-bold font-serif text-white tracking-wider">TULSHI_PIZZA_HOUSE</span>
+                    </div>
+                    <p class="text-stone-400 text-sm leading-relaxed max-w-sm">
+                        Redefining home delivery pizzaría models with structured clean architectural designs, fresh daily ingredient drops, and transparent real-time processing streams.
+                    </p>
+                </div>
+                
+                <div class="lg:col-span-2 bg-stone-850 p-6 rounded-2xl border border-stone-800 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-xs uppercase tracking-widest font-bold text-pizzaGreen-500 mb-3">Headquarters Operations</h4>
+                        <div class="space-y-2 text-sm text-stone-400">
+                            <p><i class="fa-solid fa-user-shield text-pizzaRed-500 w-5"></i> Owner/Manager: <span class="text-white font-semibold">Tulshi Barman</span></p>
+                            <p><i class="fa-solid fa-clock text-pizzaRed-500 w-5"></i> Dispatch Availability: Mon - Sun (11:00 AM - 11:00 PM)</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xs uppercase tracking-widest font-bold text-pizzaRed-500 mb-3">Direct Channels</h4>
+                        <div class="space-y-2 text-sm text-stone-400">
+                            <p><a href="tel:8637390033" class="hover:text-white transition-colors"><i class="fa-solid fa-phone text-pizzaGreen-500 w-5"></i> +91 8637390033</a></p>
+                            <p><a href="mailto:tulsibarman447@gmail.com" class="hover:text-white transition-colors"><i class="fa-solid fa-envelope text-pizzaGreen-500 w-5"></i> tulsibarman447@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-stone-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500">
+                <p>&copy; 2026 TULSHI_PIZZA_HOUSE. Full-Stack LocalStorage CRUD Architecture Engine Prototype. All Rights Reserved.</p>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <span class="hover:text-stone-400 cursor-pointer">Terms of Service</span>
+                    <span class="hover:text-stone-400 cursor-pointer">Privacy Protocol</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTION CONTROLLER MODAL (CREATE AND UPDATE COMPONENT MODULE) -->
+    <div id="crudSystemModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-stone-950/70 backdrop-blur-sm animate-fade-in">
+        <div class="bg-white dark:bg-stone-900 w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden border border-stone-100 dark:border-stone-800 transform transition-transform duration-300 scale-100">
+            
+            <!-- Modal Header Frame -->
+            <div id="modalHeaderAccent" class="p-6 text-white bg-gradient-to-r from-pizzaRed-700 to-pizzaGreen-700 flex justify-between items-center">
+                <div>
+                    <h3 id="modalFlowTitle" class="text-xl font-bold font-serif">Configure Custom Bake Order</h3>
+                    <p class="text-xs text-stone-200/80 mt-0.5">Please fill out the delivery parameters below accurately</p>
+                </div>
+                <button onclick="closeCrudModal()" class="w-8 h-8 rounded-full bg-black/20 hover:bg-black/40 text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Dynamic Action Form Engine -->
+            <form id="crudActionForm" class="p-6 space-y-5">
+                <!-- State Trackers Hidden Inputs -->
+                <input type="hidden" id="stateTargetOrderId">
+                <input type="hidden" id="stateTargetPizzaId">
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1.5">Selected Variant Base</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-stone-400"><i class="fa-solid fa-pizza-slice"></i></span>
+                        <input type="text" id="displayPizzaName" readonly class="w-full pl-9 pr-4 py-2 rounded-xl bg-stone-100 dark:bg-stone-800 border-0 text-stone-600 dark:text-stone-300 font-semibold text-sm focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="customerFormName" class="block text-xs font-bold uppercase tracking-wider text-stone-600 dark:text-stone-300 mb-1.5">Customer Identity Name</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-stone-400"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" id="customerFormName" required placeholder="e.g., Jane Doe" class="w-full pl-9 pr-4 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-700 bg-transparent focus:ring-2 focus:ring-pizzaRed-600 dark:focus:ring-pizzaRed-500 focus:outline-none transition-shadow">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="pizzaFormSize" class="block text-xs font-bold uppercase tracking-wider text-stone-600 dark:text-stone-300 mb-1.5">Target Size Dimension</label>
+                        <select id="pizzaFormSize" class="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 focus:ring-2 focus:ring-pizzaRed-600 dark:focus:ring-pizzaRed-500 focus:outline-none transition-shadow">
+                            <option value="Regular">Regular (8 Inch)</option>
+                            <option value="Medium" selected>Medium (10 Inch)</option>
+                            <option value="Large">Large (12 Inch)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="pizzaFormQty" class="block text-xs font-bold uppercase tracking-wider text-stone-600 dark:text-stone-300 mb-1.5">Quantity (Pies)</label>
+                        <input type="number" id="pizzaFormQty" min="1" max="20" value="1" required class="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-700 bg-transparent focus:ring-2 focus:ring-pizzaRed-600 dark:focus:ring-pizzaRed-500 focus:outline-none transition-shadow">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="deliveryFormAddress" class="block text-xs font-bold uppercase tracking-wider text-stone-600 dark:text-stone-300 mb-1.5">Delivery Drop Destination Address</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-stone-400"><i class="fa-solid fa-location-dot"></i></span>
+                        <textarea id="deliveryFormAddress" rows="3" required placeholder="Enter building info, street name, pincode details..." class="w-full pl-9 pr-4 py-2 text-sm rounded-xl border border-stone-200 dark:border-stone-700 bg-transparent focus:ring-2 focus:ring-pizzaRed-600 dark:focus:ring-pizzaRed-500 focus:outline-none transition-shadow"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3 pt-2">
+                    <button type="button" onclick="closeCrudModal()" class="w-1/2 py-3 bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 rounded-xl text-sm font-bold transition-colors">
+                        Cancel Parameters
+                    </button>
+                    <button type="submit" class="w-1/2 py-3 bg-gradient-to-r from-pizzaGreen-600 to-pizzaGreen-700 hover:from-pizzaGreen-700 hover:to-pizzaGreen-800 text-white rounded-xl text-sm font-bold shadow-md shadow-pizzaGreen-600/10 transition-all">
+                        Commit Order Stream
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CORE ENGINE ARCHITECTURE JAVASCRIPT LAYER -->
+    <script>
+        // STATIC RECONSTRUCTED READ-ONLY DATABASE MODEL ARRAY
+        const PIZZA_STATIC_CATALOG = [
+            {
+                id: 101,
+                title: "Margherita Luxuria",
+                desc: "Fior di latte fresh mozzarella base over rich house tomato sauce, finished beautifully with premium biological olive oil and freshly plucked basil foliage tops.",
+                basePrice: 399,
+                imgUrl: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 102,
+                title: "Calabrian Pepperoni Rush",
+                desc: "Bold artisanal spicy cured beef pepperoni rounds stacked heavily alongside smoked provolone chunks, crushed pepper flakes, and organic honey drizzle.",
+                basePrice: 549,
+                imgUrl: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 103,
+                title: "Tulshi Veggie Supreme",
+                desc: "Gourmet mosaic layout including firesmith-charred bell peppers, heirloom tomatoes, roasted red onions, kalamata olive coins, and tender artichoke hearts.",
+                basePrice: 479,
+                imgUrl: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // LOCAL STORAGE STATE ALLOCATION POOL INITIALIZER
+        let applicationStateOrders = JSON.parse(localStorage.getItem('TULSHI_PIZZA_HOUSE_STATE_STREAMS')) || [];
+
+        // ON RUNTIME LOADS
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenuCatalog();
+            syncStateTrackerUI();
+            initThemeStateEngine();
+        });
+
+        // THEMATIC STATE ENGINE MANAGEMENT
+        function initThemeStateEngine() {
+            const toggleBtn = document.getElementById('themeToggleEngine');
+            
+            if (localStorage.getItem('tulshi_theme_preference') === 'dark' || 
+                (!('tulshi_theme_preference' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            toggleBtn.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('tulshi_theme_preference', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('tulshi_theme_preference', 'dark');
+                }
+            });
+        }
+
+        // CRUD: READ OPERATION (CATALOG RENDER RENDERING ENGINE)
+        function renderMenuCatalog() {
+            const catalogContainer = document.getElementById('pizzaGridContainer');
+            catalogContainer.innerHTML = PIZZA_STATIC_CATALOG.map(item => `
+                <div class="bg-white dark:bg-stone-900 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-stone-100 dark:border-stone-800 flex flex-col group transition-all duration-300">
+                    <div class="h-56 overflow-hidden relative bg-stone-100 dark:bg-stone-800">
+                        <img src="${item.imgUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 right-4 bg-pizzaGreen-600 font-bold tracking-wide text-white px-3.5 py-1.5 rounded-xl text-sm shadow-md">
+                            ₹${item.basePrice} <span class="text-xs font-normal opacity-80">/ Base</span>
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold font-serif text-stone-800 dark:text-stone-100 group-hover:text-pizzaRed-600 dark:group-hover:text-pizzaRed-500 transition-colors">${item.title}</h3>
+                        <p class="text-sm text-stone-500 dark:text-stone-400 mt-2 flex-grow leading-relaxed">${item.desc}</p>
+                        
+                        <div class="mt-6 pt-4 border-t border-stone-100 dark:border-stone-800">
+                            <button onclick="triggerCreateFlowAction(${item.id})" class="w-full bg-pizzaRed-600 hover:bg-pizzaRed-700 text-white py-3 rounded-xl font-bold text-sm tracking-wide transition-colors flex items-center justify-center space-x-2 group-hover:shadow-lg group-hover:shadow-pizzaRed-600/10">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                                <span>Order Now</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // CRUD: READ/SYNCHRONIZE LIVE ORDERS GRAPHICALLY
+        function syncStateTrackerUI() {
+            const emptyState = document.getElementById('emptyTrackerState');
+            const hydratedGrid = document.getElementById('hydratedOrdersGrid');
+
+            if (applicationStateOrders.length === 0) {
+                emptyState.classList.remove('hidden');
+                hydratedGrid.classList.add('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            hydratedGrid.classList.remove('hidden');
+
+            hydratedGrid.innerHTML = applicationStateOrders.map(order => {
+                const totalPrice = order.computedBasePrice * order.quantity;
+                return `
+                    <div class="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 p-6 rounded-3xl shadow-sm hover:border-pizzaGreen-600/30 dark:hover:border-pizzaGreen-500/30 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between border-b border-stone-100 dark:border-stone-800 pb-3 mb-3">
+                                <div>
+                                    <span class="text-xs font-bold text-pizzaRed-600 dark:text-pizzaRed-500 uppercase tracking-widest block mb-0.5">Active Queue Processing</span>
+                                    <h4 class="text-lg font-bold font-serif">${escapeProtectionString(order.pizzaName)}</h4>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-stone-400 block">Total Cost</span>
+                                    <span class="text-base font-black text-pizzaGreen-600 dark:text-pizzaGreen-500">₹${totalPrice}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-1.5 text-sm my-4">
+                                <p class="text-stone-600 dark:text-stone-400"><span class="font-semibold text-stone-800 dark:text-stone-200">Customer:</span> ${escapeProtectionString(order.customer)}</p>
+                                <p class="text-stone-600 dark:text-stone-400"><span class="font-semibold text-stone-800 dark:text-stone-200">Size Spec:</span> <span class="px-2 py-0.5 rounded-md bg-stone-100 dark:bg-stone-800 text-xs font-bold font-mono">${order.size}</span> x ${order.quantity}</p>
+                                <p class="text-stone-600 dark:text-stone-400 leading-relaxed"><span class="font-semibold text-stone-800 dark:text-stone-200"><i class="fa-solid fa-truck-ramp-box text-xs mr-1"></i> Destination:</span> ${escapeProtectionString(order.address)}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-end space-x-3 pt-3 border-t border-stone-100 dark:border-stone-800 mt-2">
+                            <button onclick="triggerUpdateFlowAction('${order.id}')" class="px-4 py-2 text-xs font-bold bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-300 rounded-lg transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-pen-to-square text-pizzaGreen-600"></i> Modify Parameters
+                            </button>
+                            <button onclick="triggerDeleteFlowAction('${order.id}')" class="px-4 py-2 text-xs font-bold bg-pizzaRed-50 dark:bg-pizzaRed-950/40 text-pizzaRed-600 dark:text-pizzaRed-400 hover:bg-pizzaRed-100 dark:hover:bg-pizzaRed-950/80 rounded-lg transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-trash-can"></i> Cancel Order
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // CRUD FLOW ACTIONS SWITCHERS (CONTROLLERS INTERFACES)
+        function triggerCreateFlowAction(pizzaId) {
+            const targetPizza = PIZZA_STATIC_CATALOG.find(p => p.id === pizzaId);
+            if (!targetPizza) return;
+
+            document.getElementById('crudActionForm').reset();
+            document.getElementById('stateTargetOrderId').value = '';
+            document.getElementById('stateTargetPizzaId').value = targetPizza.id;
+            document.getElementById('displayPizzaName').value = targetPizza.title;
+            
+            document.getElementById('modalFlowTitle').innerText = "Configure Custom Bake Order";
+            document.getElementById('modalHeaderAccent').className = "p-6 text-white bg-gradient-to-r from-pizzaRed-700 to-pizzaRed-800 flex justify-between items-center";
+            
+            toggleModalVisibility(true);
+        }
+
+        function triggerUpdateFlowAction(orderId) {
+            const currentOrder = applicationStateOrders.find(o => o.id === orderId);
+            if (!currentOrder) return;
+
+            document.getElementById('stateTargetOrderId').value = currentOrder.id;
+            document.getElementById('stateTargetPizzaId').value = currentOrder.pizzaId;
+            document.getElementById('displayPizzaName').value = currentOrder.pizzaName;
+            document.getElementById('customerFormName').value = currentOrder.customer;
+            document.getElementById('pizzaFormSize').value = currentOrder.size;
+            document.getElementById('pizzaFormQty').value = currentOrder.quantity;
+            document.getElementById('deliveryFormAddress').value = currentOrder.address;
+
+            document.getElementById('modalFlowTitle').innerText = "Modify Active Queue Order";
+            document.getElementById('modalHeaderAccent').className = "p-6 text-white bg-gradient-to-r from-pizzaGreen-700 to-pizzaGreen-800 flex justify-between items-center";
+
+            toggleModalVisibility(true);
+        }
+
+        // CRUD FLOW: SUBMIT EVENT ROUTER ENGINE (Handles CREATE and UPDATE submissions)
+        document.getElementById('crudActionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const targetOrderId = document.getElementById('stateTargetOrderId').value;
+            const targetPizzaId = parseInt(document.getElementById('stateTargetPizzaId').value);
+            const parentCatalogPizza = PIZZA_STATIC_CATALOG.find(p => p.id === targetPizzaId);
+
+            const packagedPayload = {
+                customer: document.getElementById('customerFormName').value.trim(),
+                size: document.getElementById('pizzaFormSize').value,
+                quantity: parseInt(document.getElementById('pizzaFormQty').value) || 1,
+                address: document.getElementById('deliveryFormAddress').value.trim(),
+                pizzaId: targetPizzaId,
+                pizzaName: parentCatalogPizza.title,
+                computedBasePrice: parentCatalogPizza.basePrice
+            };
+
+            if (targetOrderId) {
+                // UPDATE CURRENT RUNTIME ARRAY INSTANCE
+                applicationStateOrders = applicationStateOrders.map(instance => 
+                    instance.id === targetOrderId ? { ...instance, ...packagedPayload } : instance
+                );
+            } else {
+                // CREATE NEW LOGISTIC MODEL PACKAGE
+                packagedPayload.id = "ORDER_" + Date.now().toString(36).toUpperCase();
+                applicationStateOrders.push(packagedPayload);
+            }
+
+            commitStatePersistence();
+            toggleModalVisibility(false);
+            
+            // UX Smooth viewport scroll correction to view active tracking update
+            document.getElementById('trackerSection').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // CRUD FLOW: DELETE CONTROLLER ACTION
+        function triggerDeleteFlowAction(orderId) {
+            const verifyConfirmationResponse = confirm("Safety Protocol Check: Are you completely certain you wish to purge and cancel this processing custom pizza order instance from the system queue state?");
+            if (verifyConfirmationResponse) {
+                applicationStateOrders = applicationStateOrders.filter(o => o.id !== orderId);
+                commitStatePersistence();
+            }
+        }
+
+        // UTILITIES BASELINE PROTOCOLS
+        function commitStatePersistence() {
+            localStorage.setItem('TULSHI_PIZZA_HOUSE_STATE_STREAMS', JSON.stringify(applicationStateOrders));
+            syncStateTrackerUI();
+        }
+
+        function toggleModalVisibility(shouldDisplay) {
+            const modalElement = document.getElementById('crudSystemModal');
+            if (shouldDisplay) {
+                modalElement.classList.remove('hidden');
+            } else {
+                modalElement.classList.add('hidden');
+            }
+        }
+
+        function closeCrudModal() {
+            toggleModalVisibility(false);
+        }
+
+        function escapeProtectionString(rawInput) {
+            return rawInput.replace(/[&<>'"]/g, match => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[match] || match));
+        }
+    </script>
+</body>
+</html>
